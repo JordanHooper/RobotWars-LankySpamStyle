@@ -1,28 +1,56 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 12f;
 
-    Vector3 movement;
-    public Rigidbody botRigidBody;
+    public float rotateSpeed = 1.8f, acceleration = 0.5f;
+    private float speed = 0;
 
+    public Text Output;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        Output.text = "Current Speed : " + (speed * 10).ToString("N2");
+        if (Input.GetKey(KeyCode.W))
         {
-            botRigidBody.velocity = new Vector3(0f, 0f, 10f);
+            speed += (acceleration * Time.deltaTime) / 6;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            speed -= (acceleration * Time.deltaTime * 2) / 6;
+        }
+        else
+        {
+            speed /= 1.04f;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(0, 1.5f, 0);
+            transform.Rotate(0, rotateSpeed, 0);
         }
+
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(0, -1.5f, 0);
+            transform.Rotate(0, -rotateSpeed, 0);
+        }
+
+        CheckMaxSpeed();                                                //check max speeds
+        transform.position += transform.forward * speed;                // directional movement
+
+        //speed -= (speed / 4);                                         // try and decrease over time
+    }
+
+    void CheckMaxSpeed()
+    {
+        if (speed >= 0.3f)
+        {
+            speed = 0.3f;
+        }
+        else if (speed <= -0.25f)
+        {
+            speed = -0.25f;
         }
     }
 }
