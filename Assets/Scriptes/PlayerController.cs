@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public float rotateSpeed = 1.8f, acceleration = 0.5f;
+    public float rotateSpeed = 5f, acceleration = 0.5f;
     private float speed = 0;
 
     public Text Output;
