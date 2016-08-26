@@ -23,7 +23,16 @@ public class PitEnumScript : MonoBehaviour
     public void PitReleased()
     {
         //start the pit lowering (animation)
-        //set pit to down
+        //set pit to down to y= -3.5
+        if (this.transform.position.y >= -3.5f)
+        {
+            this.transform.Translate(0, -Time.deltaTime, 0);
+        }
+        else
+        {
+            this.transform.position = new Vector3(10f, -3.5f, -10f);
+        }
+
 
     }
 

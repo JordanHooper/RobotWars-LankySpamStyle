@@ -4,15 +4,32 @@ using System.Collections;
 public class Flipper : MonoBehaviour
 {
     public Transform flipper;
+    float timer = 3f;
+    bool startClock = false;
 
-    void Awake()
+    void OnTriggerEnter(Collider col)
     {
-        //flipper = GetComponentInParent<Transform>();
+        if (col.gameObject.tag == "Player")
+        {
+            flipper.Rotate(-25, 0, 0);
+            flipper.Translate(0, 1, 0);
+            startClock = true;
+        }
     }
 
-    void OnTriggerEnter()
+    void Update()
     {
-        //Flipper.transform.rotation(-40, 0, -40);
-    }
+        if (startClock == true)
+        {
+            timer -= Time.deltaTime;
+        }
 
+        if (timer <= 0f)
+        {
+            flipper.Rotate(25, 0, 0);
+            flipper.Translate(0, -1, 0);
+            timer = 3f;
+            startClock = false;
+        }
+    }
 }
