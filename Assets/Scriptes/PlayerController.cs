@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Scriptes;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class PlayerController : MonoBehaviour
     public Text Output;
 
     void Update()
+    {
+        if (GameEventManager.currentGameState == GameState.GameRunning)
+        {
+            Mover();
+        }
+
+    }
+
+    void Mover()
     {
         Output.text = "Current Speed : " + (speed * 10).ToString("N2");
         if (Input.GetKey(KeyCode.W))
@@ -39,7 +49,6 @@ public class PlayerController : MonoBehaviour
         CheckMaxSpeed();                                                //check max speeds
         transform.position += transform.forward * speed;                // directional movement
 
-        //speed -= (speed / 4);                                         // try and decrease over time
     }
 
     void CheckMaxSpeed()
