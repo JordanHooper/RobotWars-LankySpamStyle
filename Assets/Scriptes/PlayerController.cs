@@ -5,7 +5,6 @@ using Assets.Scriptes;
 
 public class PlayerController : MonoBehaviour
 {
-    public CameraLock cam;
     public float rotateSpeed = 5f, acceleration = 0.5f;
     private float speed = 0;
 
@@ -48,13 +47,6 @@ public class PlayerController : MonoBehaviour
 
         CheckMaxSpeed();                                                //check max speeds
         transform.position += transform.forward * speed;                // directional movement
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            //GetComponent<CameraLock>();
-            Toggle(cam.isActiveAndEnabled);
-        }
-
     }
 
     public bool Toggle(bool temp)

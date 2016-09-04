@@ -25,7 +25,7 @@ public class GameEventManager : MonoBehaviour
         if (currentGameState == GameState.PreGame)
         {
             PreGame();
-            actBut.enabled = false;
+            Destroy(actBut);
         }
         if (timer == true)
         {

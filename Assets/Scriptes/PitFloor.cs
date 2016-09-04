@@ -11,7 +11,7 @@ public class PitFloor : MonoBehaviour
         if (Col.gameObject.tag == "Player")
         {
             temp.Play();
-            GameEventManager.currentGameState = GameState.GameEnd;
+           // GameEventManager.currentGameState = GameState.GameEnd;
         }
     }
 }
