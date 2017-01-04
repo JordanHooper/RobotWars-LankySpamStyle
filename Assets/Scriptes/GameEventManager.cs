@@ -9,11 +9,11 @@ public enum GameState
 
 public class GameEventManager : MonoBehaviour
 {
-    public Button actBut;
+    public GameObject actBut;
     public static GameState currentGameState = GameState.MenuScreen;
-    public Text message;
+    public Text message, timeDisplay;
     bool timer = false;
-    float actTime = 5f;
+    float actTime = 5f, gameTimer = 180;
 
     void Awake()
     {
@@ -22,14 +22,33 @@ public class GameEventManager : MonoBehaviour
 
     void Update()
     {
+        string mins, seconds;
+
+        CheckStates();
+
+        mins = (gameTimer / 60f).ToString("F0");
+        seconds = (gameTimer % 60).ToString("F0");
+        timeDisplay.text = mins + " : " + seconds;
+        if (gameTimer <= 0f)
+        {
+            currentGameState = GameState.GameEnd;
+        }
+    }
+
+    void CheckStates()
+    {
         if (currentGameState == GameState.PreGame)
         {
-            PreGame();
             Destroy(actBut);
+            PreGame();
         }
         if (timer == true)
         {
             actTime -= Time.deltaTime;
+        }
+        if (currentGameState == GameState.GameRunning)
+        {
+            gameTimer -= Time.deltaTime;
         }
     }
 
@@ -67,6 +86,6 @@ public class GameEventManager : MonoBehaviour
 
     public void StartButton()
     {
-        currentGameState = GameState.PreGame;           
+        currentGameState = GameState.PreGame;
     }
 }

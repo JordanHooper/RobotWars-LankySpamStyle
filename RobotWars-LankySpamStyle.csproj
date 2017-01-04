@@ -67,7 +67,6 @@
     <Compile Include="Assets\Scriptes\Flipper.cs" />
     <Compile Include="Assets\Scriptes\GameEventManager.cs" />
     <Compile Include="Assets\Scriptes\PitEnumScript.cs" />
-    <Compile Include="Assets\Scriptes\PitFloor.cs" />
     <Compile Include="Assets\Scriptes\PitRelease.cs" />
     <Compile Include="Assets\Scriptes\PitState.cs" />
     <Compile Include="Assets\Scriptes\PlayerController.cs" />

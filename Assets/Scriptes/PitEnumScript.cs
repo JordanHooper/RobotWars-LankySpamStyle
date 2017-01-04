@@ -1,15 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Assets.Scriptes;
-using UnityEngine.UI;
 
 public class PitEnumScript : MonoBehaviour
 {
     public static PitState currentPitState = PitState.Up;
+    public ParticleSystem temp;
 
     void Awake()
     {
         currentPitState = PitState.Up;
+    }
+
+
+    void OnTriggerEnter(Collider Col)
+    {
+        if (Col.gameObject.tag == "Player")
+        {
+            temp.Play();
+            GameEventManager.currentGameState = GameState.GameEnd;
+        }
     }
 
     void FixedUpdate()
@@ -33,7 +42,7 @@ public class PitEnumScript : MonoBehaviour
             this.transform.position = new Vector3(10f, -3.5f, -10f);
         }
 
-
+        //this is lowering everything including the trigger = broken
     }
 
     //add trigger + pit down + game stop + particle emitter
