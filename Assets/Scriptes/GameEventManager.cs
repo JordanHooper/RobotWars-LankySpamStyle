@@ -9,6 +9,7 @@ public enum GameState
 
 public class GameEventManager : MonoBehaviour
 {
+    public Button actBut;
     public static GameState currentGameState = GameState.MenuScreen;
     public Text message;
     bool timer = false;
@@ -24,6 +25,7 @@ public class GameEventManager : MonoBehaviour
         if (currentGameState == GameState.PreGame)
         {
             PreGame();
+            Destroy(actBut);
         }
         if (timer == true)
         {
@@ -65,6 +67,6 @@ public class GameEventManager : MonoBehaviour
 
     public void StartButton()
     {
-        currentGameState = GameState.PreGame;
+        currentGameState = GameState.PreGame;           
     }
 }

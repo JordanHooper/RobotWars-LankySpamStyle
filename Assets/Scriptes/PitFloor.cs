@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scriptes;
 
 public class PitFloor : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PitFloor : MonoBehaviour
         if (Col.gameObject.tag == "Player")
         {
             temp.Play();
+           // GameEventManager.currentGameState = GameState.GameEnd;
         }
     }
 }
